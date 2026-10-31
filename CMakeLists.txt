@@ -15,7 +15,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
   endif()
 endif()
 
-add_library(curren src/arena.cpp src/table.cpp src/log.cpp)
+add_library(curren src/arena.cpp src/table.cpp src/log.cpp src/curren.cpp)
 target_include_directories(curren PUBLIC include)
 
 enable_testing()
@@ -30,3 +30,6 @@ add_test(NAME table COMMAND test_table)
 add_executable(test_log tests/test_log.cpp)
 target_link_libraries(test_log PRIVATE curren)
 add_test(NAME log COMMAND test_log)
+
+add_executable(curren-cli examples/cli.cpp)
+target_link_libraries(curren-cli PRIVATE curren)

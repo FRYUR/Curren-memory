@@ -14,3 +14,11 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     add_link_options(-fsanitize=address,undefined)
   endif()
 endif()
+
+add_library(curren src/arena.cpp)
+target_include_directories(curren PUBLIC include)
+
+enable_testing()
+add_executable(test_arena tests/test_arena.cpp)
+target_link_libraries(test_arena PRIVATE curren)
+add_test(NAME arena COMMAND test_arena)
